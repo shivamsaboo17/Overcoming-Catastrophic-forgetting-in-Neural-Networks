@@ -1,5 +1,6 @@
 # Overcoming-Catastrophic-forgetting-in-Neural-Networks
 Elastic weight consolidation technique for incremental learning.
+!! Testing in progress !!
 ## About
 Use this API if you dont want your neural network to forget previously learnt tasks while doing transfer learning or domain adaption!
 ## Usage
