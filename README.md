@@ -16,5 +16,5 @@ ewc.register_ewc_params(dataset, batch_size, num_batches_to_run_for_sampling)
 # Repeat this for each new task and it's corresponding dataset
 ```
 ## Reference
-![Paper](https://arxiv.org/abs/1612.00796)
+[Paper](https://arxiv.org/abs/1612.00796)
 
