@@ -1,8 +1,17 @@
 # Overcoming-Catastrophic-forgetting-in-Neural-Networks
 Elastic weight consolidation technique for incremental learning.
-!! Testing in progress !!
 ## About
 Use this API if you dont want your neural network to forget previously learnt tasks while doing transfer learning or domain adaption!
+## Results
+The experiment is done as follow:</br>
+1. Train a 2 layer feed forward neural network on MNIST for 4 epochs
+2. Train the same network later on Fashion-MNIST for 4 epochs
+This is done once with EWC and then without EWC and results are calculated on test data for both data on same model. Constant learning rate of 1e-4 is used throughout with Adam Optimizer. Importance multiplier is kept at 10e5 and sampling is done with half data before moving to next dataset</br>
+
+| EWC | MNIST | Fashion-MNIST |
+| --- | ----- | ------------- |
+| Yes | 70.27 |     81.88     |
+| No  | 48.43 |     86.69     |
 ## Usage
 ```python
 from elastic_weight_consolidation import ElasticWeightConsolidation
