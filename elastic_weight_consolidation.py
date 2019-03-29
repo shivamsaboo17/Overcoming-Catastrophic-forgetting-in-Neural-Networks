@@ -4,11 +4,12 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torch import autograd
 import numpy as np
+from torch.utils.data import DataLoader
 
 
 class ElasticWeightConsolidation:
 
-    def __init__(self, model, crit, lr=0.001, weight=0.1):
+    def __init__(self, model, crit, lr=0.001, weight=1000000):
         self.model = model
         self.weight = weight
         self.crit = crit
@@ -20,7 +21,7 @@ class ElasticWeightConsolidation:
             self.model.register_buffer(_buff_param_name+'_estimated_mean', param.data.clone())
 
     def _update_fisher_params(self, current_ds, batch_size, num_batch):
-        dl = DataLoader(ds, batch_size, shuffle=True)
+        dl = DataLoader(current_ds, batch_size, shuffle=True)
         log_liklihoods = []
         for i, (input, target) in enumerate(dl):
             if i > num_batch:
@@ -56,8 +57,8 @@ class ElasticWeightConsolidation:
         loss.backward()
         self.optimizer.step()
 
-    def save(self):
-        torch.save(self.model)
-        
+    def save(self, filename):
+        torch.save(self.model, filename)
+
     def load(self, filename):
         self.model = torch.load(filename)
